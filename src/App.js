@@ -110,7 +110,12 @@ function App() {
           </Text>
         </Flex>
 
-        <Flex justify="space-between" px="4rem">
+        <Flex
+          flexDirection={{ md: "row", sm: "column" }}
+          justify="space-between"
+          align="center"
+          px="4rem"
+        >
           {state.columnOrder.map((columnId) => {
             const column = state.columns[columnId];
             const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
