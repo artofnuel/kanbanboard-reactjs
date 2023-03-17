@@ -85,43 +85,47 @@ function App() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Flex justify="center" align="center" p="0.75rem" px="20px">
-        <Heading>
-          <a href="https://www.github.com/artofnuel">Github</a>
-        </Heading>
-      </Flex>
-      <Flex
-        flexDir="column"
-        bg="main-bg"
-        minH="100vh"
-        w="full"
-        color="white-text"
-        pb="2rem"
-      >
-        <Flex py="4rem" flexDir="column" align="center">
-          <Heading fontSize={"3xl"} fontWeight="700">
-            My Kanban Board
+      <Flex flexDirection="column" w="full" align="center" justify="center">
+        <Flex justify="center" align="center" p="0.75rem" px="20px">
+          <Heading>
+            <a href="https://www.github.com/artofnuel">Github</a>
           </Heading>
-          <Text fontSize="20px" fontWeight="400" color="subtle-text">
-            Drag your tasks!
-          </Text>
-          <Text fontSize="10px" fontWeight="400" color="subtle-text">
-            Currently working on new update, stay tuned.
-          </Text>
         </Flex>
-
         <Flex
-          flexDirection={{ md: "row", sm: "column" }}
-          justify="space-between"
-          align="center"
-          px="4rem"
+          flexDir="column"
+          bg="main-bg"
+          minH="100vh"
+          w="full"
+          color="white-text"
+          pb="2rem"
         >
-          {state.columnOrder.map((columnId) => {
-            const column = state.columns[columnId];
-            const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
+          <Flex py="4rem" flexDir="column" align="center">
+            <Heading fontSize={"3xl"} fontWeight="700">
+              My Kanban Board
+            </Heading>
+            <Text fontSize="20px" fontWeight="400" color="subtle-text">
+              Drag your tasks!
+            </Text>
+            <Text fontSize="10px" fontWeight="400" color="subtle-text">
+              Currently working on new update, stay tuned.
+            </Text>
+          </Flex>
 
-            return <Column key={column.id} column={column} tasks={tasks} />;
-          })}
+          <Flex
+            w="full"
+            flexDirection={{ base: "column", md: "row" }}
+            gap="15px"
+            justify={{ base: "center", md: "space-between" }}
+            align={{ base: "center", sm: "start" }}
+            px="4rem"
+          >
+            {state.columnOrder.map((columnId) => {
+              const column = state.columns[columnId];
+              const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
+
+              return <Column key={column.id} column={column} tasks={tasks} />;
+            })}
+          </Flex>
         </Flex>
       </Flex>
     </DragDropContext>
